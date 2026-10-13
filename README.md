@@ -49,6 +49,7 @@ At most about 600 tokens: a 2-core laptop reads about 5 a second, and this is re
   "persona": "browseml",
   "name": "browseML",
   "kind": "engine",
+  "opening": "browseML knows best. … (optional: the first words, shown when it is switched to)",
   "system_prompt": "You are browseML: … (the facts, short)",
   "behavioral_traits": ["optional", "list"],
   "awareness": { "facts": [{ "fact": "optional, sourced" }] }
@@ -56,7 +57,12 @@ At most about 600 tokens: a 2-core laptop reads about 5 a second, and this is re
 ```
 
 The page reads `system_prompt` (and the optional traits and facts) into the field's `.persona` window; bankML's own
-personas (its 10 KB `bankml.persona`, Savante's) follow the same format.
+personas (its 10 KB `bankml.persona`, Savante's) follow the same format. `opening` is optional: the persona's first
+words, shown when a visitor switches to it — never sent to the model.
+
+**Make one in browseML:** the control panel's **PERSONA** switches between browseML's own and yours (new, edit,
+import, export a `.persona`); **BUILDER → .persona** has browseML fill the name, the opening message and the prompt
+from a description, on your computer, for you to read and edit.
 
 ```sh
 node validate.mjs            # every personas/*.persona

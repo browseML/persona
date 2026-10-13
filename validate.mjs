@@ -17,6 +17,7 @@ export function validate(text) {
   try { p = JSON.parse(text); } catch { return { errors: ["not JSON"], warnings, tokens: 0 }; }
   if (!p || typeof p !== "object" || Array.isArray(p)) return { errors: ["not a JSON object"], warnings, tokens: 0 };
   for (const k of ["persona", "name", "system_prompt"]) if (typeof p[k] !== "string" || !p[k].trim()) errors.push(`"${k}" must be non-empty text`);
+  if (p.opening !== undefined && typeof p.opening !== "string") errors.push('"opening" must be text');
   if (p.behavioral_traits !== undefined && !(Array.isArray(p.behavioral_traits) && p.behavioral_traits.every((t) => typeof t === "string"))) errors.push('"behavioral_traits" must be a list of text');
   const facts = p.awareness?.facts;
   if (facts !== undefined && !(Array.isArray(facts) && facts.every((f) => f && typeof f.fact === "string"))) errors.push('"awareness.facts" must be a list of {fact}');
